@@ -142,7 +142,7 @@
       const buttons = [
         [
           { input: "CE" },
-          { input: "C", className: "flex-1 h-16" },
+          { input: "C", className: "flex-1 h-14 sm:h-16" },
           { input: "/", variant: "primary" },
         ],
         [
@@ -164,9 +164,9 @@
           { input: "+", variant: "primary" },
         ],
         [
-          { input: "0", className: "flex-1 h-16" },
+          { input: "0", className: "flex-1 h-14 sm:h-16" },
           { input: "," },
-          { input: "=", className: "w-16 h-16 bg-[#7f45e2]" },
+          { input: "=", className: "w-14 h-14 sm:w-16 sm:h-16 bg-[#7f45e2]" },
         ],
       ];
 
@@ -314,8 +314,9 @@
         return (
           <Card
             className={`
-          flex flex-col gap-[1.625rem] w-[22.25rem]
-          pt-14 px-8 pb-8
+          flex flex-col gap-[1.625rem] 
+          w-full max-w-[22.25rem]
+          pt-14 px-6 sm:px-8 pb-8
           min-h-[554px]
           `}
           >
@@ -323,11 +324,11 @@
 
             <div className="flex flex-col gap-3">
               {buttons.map((row, index) => (
-                <div key={`row-${index}`} className="flex gap-3">
+                <div key={`row-${index}`} className="flex gap-2 sm:gap-3">
                   {row.map((button) => (
                     <Button
                       key={button.input}
-                      className={button.className || "w-16 h-16"}
+                      className={button.className || "w-14 h-14 sm:w-16 sm:h-16"}
                       variant={button.variant}
                       onClick={() => handleInputClick(button.input)}
                     >
@@ -345,7 +346,7 @@
         const { history, clearHistory } = React.useContext(CalculatorContext);
 
         return (
-          <Card className="w-[22.25rem] py-10 px-8 h-[554px] flex flex-col">
+          <Card className="w-full max-w-[22.25rem] py-10 px-6 sm:px-8 h-[554px] flex flex-col">
             <div className="flex items-center justify-between mb-4 flex-shrink-0">
               <Text as="h1" variant="heading">
                 Histórico de Operações
@@ -395,11 +396,12 @@
           <>
             <main
               className={`
-            py-20 px-4 sm:px-10
+            py-8 sm:py-20 px-4 sm:px-10
             flex flex-col sm:flex-row
             items-center sm:items-start
             justify-center
             gap-6 sm:gap-8
+            w-full
             `}
             >
               <CalculatorProvider>
