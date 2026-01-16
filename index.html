@@ -316,8 +316,8 @@
             className={`
           flex flex-col gap-[1.625rem] 
           w-full max-w-[22.25rem]
-          pt-14 px-6 sm:px-8 pb-8
-          min-h-[554px]
+          pt-10 sm:pt-14 px-4 sm:px-8 pb-6 sm:pb-8
+          min-h-[500px] sm:min-h-[554px]
           `}
           >
             <CalculatorDisplay operation={operation} result={result} />
@@ -328,7 +328,9 @@
                   {row.map((button) => (
                     <Button
                       key={button.input}
-                      className={button.className || "w-14 h-14 sm:w-16 sm:h-16"}
+                      className={
+                        button.className || "w-14 h-14 sm:w-16 sm:h-16"
+                      }
                       variant={button.variant}
                       onClick={() => handleInputClick(button.input)}
                     >
@@ -393,7 +395,7 @@
       }
       function App() {
         return (
-          <>
+          <div className="min-h-screen flex flex-col">
             <main
               className={`
             py-8 sm:py-20 px-4 sm:px-10
@@ -401,13 +403,13 @@
             items-center sm:items-start
             justify-center
             gap-6 sm:gap-8
-            w-full
+            flex-1
             `}
             >
               <CalculatorProvider>
-                <div className="flex flex-col gap-6 sm:gap-8">
+                <div className="flex flex-col gap-6 sm:gap-8 w-full sm:w-auto items-center">
                   <Calculator />
-                  <footer className="text-center mt-4 sm:hidden">
+                  <div className="text-center mt-4 sm:hidden w-full">
                     <Text
                       variant="default"
                       className="text-xs"
@@ -415,12 +417,14 @@
                     >
                       Made with ❤️ by Maycon Mancilha - Software Engineer
                     </Text>
-                  </footer>
+                  </div>
                 </div>
-                <OperationHistory />
+                <div className="hidden sm:block">
+                  <OperationHistory />
+                </div>
               </CalculatorProvider>
             </main>
-            <footer className="hidden sm:block pb-4 px-4 text-center">
+            <div className="hidden sm:block pb-4 px-4 text-center">
               <Text
                 variant="default"
                 className="text-xs"
@@ -428,8 +432,8 @@
               >
                 Made with ❤️ by Maycon Mancilha - Software Engineer
               </Text>
-            </footer>
-          </>
+            </div>
+          </div>
         );
       }
 
