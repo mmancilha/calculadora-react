@@ -65,9 +65,9 @@
   </head>
 
   <body
-    class="bg-linear-[180deg,_#807ECE_0%,_#807ECE_100%] min-h-screen text-(--text) font-(--font-sans) flex flex-col overflow-hidden"
+    class="bg-linear-[180deg,_#807ECE_0%,_#807ECE_100%] min-h-screen text-(--text) font-(--font-sans) relative"
   >
-    <div id="root" class="flex flex-col min-h-screen"></div>
+    <div id="root"></div>
 
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -403,11 +403,22 @@
             `}
             >
               <CalculatorProvider>
-                <Calculator />
+                <div className="flex flex-col gap-6 sm:gap-8">
+                  <Calculator />
+                  <footer className="text-center mt-4 sm:hidden">
+                    <Text
+                      variant="default"
+                      className="text-xs"
+                      style={{ color: "#ebebeb" }}
+                    >
+                      Made with ❤️ by Maycon Mancilha - Software Engineer
+                    </Text>
+                  </footer>
+                </div>
                 <OperationHistory />
               </CalculatorProvider>
             </main>
-            <footer className="pb-4 px-4 text-center">
+            <footer className="hidden sm:block pb-4 px-4 text-center">
               <Text
                 variant="default"
                 className="text-xs"
