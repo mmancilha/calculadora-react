@@ -35,6 +35,33 @@
         --font-sans: "Rubik", sans-serif;
       }
     </style>
+    <style>
+      /* Estilização da barra de rolagem customizada */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #2d2a37;
+        border-radius: 10px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #462878;
+        border-radius: 10px;
+        border: 2px solid #2d2a37;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #5a3490;
+      }
+
+      /* Para Firefox */
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #462878 #2d2a37;
+      }
+    </style>
   </head>
 
   <body
@@ -310,12 +337,12 @@
         const { history } = React.useContext(CalculatorContext);
 
         return (
-          <Card className="w-full max-w-[22.25rem] sm:max-w-[28rem] py-10 px-8">
+          <Card className="w-[22.25rem] py-10 px-8">
             <Text as="h1" variant="heading" className="mb-4">
               Histórico de Operações
             </Text>
             {history.length > 0 ? (
-              <ul className="flex flex-col gap-3 max-h-[400px] overflow-y-auto">
+              <ul className="flex flex-col gap-3 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
                 {history.map((value, index) => (
                   <Text key={`item-${index}`} as="li">
                     {value}
