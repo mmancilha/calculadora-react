@@ -12,4 +12,4 @@ Projeto em React para construir a interface de uma calculadora.
 
 ## Preview
 
-![Calculadora](calculadora.png)
+![Calculadora](assets/images/calculadora.png)
