@@ -65,9 +65,9 @@
   </head>
 
   <body
-    class="bg-linear-[180deg,_#807ECE_0%,_#807ECE_100%] min-h-screen text-(--text) font-(--font-sans)"
+    class="bg-linear-[180deg,_#807ECE_0%,_#807ECE_100%] min-h-screen text-(--text) font-(--font-sans) flex flex-col"
   >
-    <div id="root"></div>
+    <div id="root" class="flex flex-col min-h-screen"></div>
 
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -400,6 +400,7 @@
             items-center sm:items-start
             justify-center
             gap-6 sm:gap-8
+            flex-1
             `}
             >
               <CalculatorProvider>
@@ -407,8 +408,8 @@
                 <OperationHistory />
               </CalculatorProvider>
             </main>
-            <footer className="pb-8 px-4 text-center">
-              <Text variant="muted" className="text-sm">
+            <footer className="pb-12 px-4 text-center mt-auto">
+              <Text variant="default" className="text-sm" style={{ color: '#ebebeb' }}>
                 Made with ❤️ by Maycon Mancilha - Software Engineer
               </Text>
             </footer>
