@@ -189,6 +189,11 @@
           });
         }
 
+        function clearHistory() {
+          setHistory([]);
+          localStorage.removeItem(historyStorageKey);
+        }
+
         React.useEffect(() => {
           const savedHistory = localStorage.getItem(
             historyStorageKey,
@@ -198,7 +203,7 @@
         }, []);
 
         return (
-          <CalculatorContext.Provider value={{ history, updateHistory }}>
+          <CalculatorContext.Provider value={{ history, updateHistory, clearHistory }}>
             {children}
           </CalculatorContext.Provider>
         );
@@ -304,11 +309,14 @@
           return input;
         }
 
+        const { clearHistory } = React.useContext(CalculatorContext);
+
         return (
           <Card
             className={`
           flex flex-col gap-[1.625rem] w-[22.25rem]
           pt-14 px-8 pb-8
+          min-h-[554px]
           `}
           >
             <CalculatorDisplay operation={operation} result={result} />
@@ -329,6 +337,14 @@
                 </div>
               ))}
             </div>
+
+            <Button
+              variant="primary"
+              className="w-full mt-2"
+              onClick={clearHistory}
+            >
+              Limpar Histórico
+            </Button>
           </Card>
         );
       }
@@ -337,12 +353,12 @@
         const { history } = React.useContext(CalculatorContext);
 
         return (
-          <Card className="w-[22.25rem] py-10 px-8">
+          <Card className="w-[22.25rem] py-10 px-8 min-h-[554px] flex flex-col">
             <Text as="h1" variant="heading" className="mb-4">
               Histórico de Operações
             </Text>
             {history.length > 0 ? (
-              <ul className="flex flex-col gap-3 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+              <ul className="flex flex-col gap-3 flex-1 overflow-y-auto custom-scrollbar pr-2">
                 {history.map((value, index) => (
                   <Text key={`item-${index}`} as="li">
                     {value}
@@ -350,7 +366,7 @@
                 ))}
               </ul>
             ) : (
-              <Text as="p" variant="muted">
+              <Text as="p" variant="muted" className="flex-1 flex items-center">
                 Nenhuma operação recente.
               </Text>
             )}
